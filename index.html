@@ -7,136 +7,38 @@
     <title>Modal</title>
 
     <style>
-    .alert-wrapper{
-        display: none;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        background-color: rgba(0,0,0,0.9);
-        top: 0;
-    }
-    .modal{
-        border: 1px solid #000000;
-        width: 60%;
-        background-color: #ffffff;
-        margin: 0 auto;
-        z-index: 2;
-        margin-top: 140px; 
-        animation-name: animatetop;
-        animation-duration: 0.6s;
-        animation-timing-function: ease-in-out;
-    }
-
-    @keyframes animatetop {
-        from { opacity:0 }
-        to { opacity: 1 }
-    }
-    .modal__header{
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 1px solid #d3d3d3;
-        padding: 0px 10px;
-        box-sizing: border-box;
-    }
-    .modal__fechar{
-        color: #000000;
-        font-size: 30px;
-        font-weight: bold;
-    }
-    .modal__fechar:hover,
-    .modal__fechar:focus{ cursor: pointer; text-decoration: none;}
-
-    .modal__body{
-        padding: 0px 10px;
-        box-sizing: border-box;
-        border-bottom: 1px solid #d3d3d3;
-    }
-    .modal__footer{ 
-        margin: 10px 0px; 
-        display: flex; 
-        justify-content: flex-end; 
-        padding: 0px 10px; 
-    }
-    .btn{ 
-        font-weight: bold;
-        padding: 10px;
-        background-color: #fff;
-        border: 1px solid #000000;
-        cursor: pointer;
-    }
+        @keyframes animatetop {
+            from { opacity:0 }
+            to { opacity: 1 }
+        }
+        
+        .btn{
+            border-color: #eee;
+            padding: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>  
     <h1>Modals</h1>
     
-    <button class="btn_modal" id="btn_modal">Abrir Modal</button>
-    
-    <div class="alert-wrapper" >
-        <div class='modal'>
-            <div class="modal__header"> 
-                <h2 class="modal__titulo"> Título do modal </h2> 
-                <span class="modal__fechar">&times;</span>
-            </div>
-            <div class="modal__body">
-                <p class="conteudo_body"> </p>
-            </div>
-            <div class="modal__footer">
-                <button class="btn btn_confirmar">Confirmar</button>
-            </div>
-        </div>
-    </div>
+    <button class="btn Cobz-ModalRegular" style="background: #ffffff"> Modal Padrao</button>
+    <button class="btn Cobz-ModalSucess"  style="background: #00ff00">  Modal Success</button>
+    <button class="btn Cobz-ModalWarning" style="background: #ffae42"> Modal Warning</button>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./script.js"> </script>
+
     <script>
-        $(document).ready(function(){
-            App.init();
-        });
+        
+        CobzModal.regular(
+            header = "titulo modal global", 
+            close = true, 
+            action = true, 
+            theme = "#f00", 
+            content = "Conteudo do meu modal global, esta aqui...................."
+        );
 
-        let App = {
-            init: function(){
-                this.modal();
-                this.modalcaratheristicas();
-            },
-            modal: function(){
-                let _self = this;
-                $('#btn_modal').click(function(e){
-                    e.preventDefault();
-                    $('.alert-wrapper').css("display", "block");
-                });
-                $(".modal__fechar").click(function(e){
-                    e.preventDefault();
-                    $('.alert-wrapper').css("display", "none");
-                });
-            },
-            modalcaratheristicas: function(){
-                let modal = { 
-                    header: 'Titulo header', 
-                    content: `Cras mattis consectetur purus sit amet fermentum. 
-                        Cras justo odio, dapibus ac facilisis in, egestas eget quam. 
-                        Morbi leo risus, porta ac consectetur ac, vestibulum at eros.`, 
-                    close: true, 
-                    action: true, 
-                    theme: 'black' 
-                };
-
-                $('.modal__titulo').html(modal.header);
-                $('.conteudo_body').html(modal.content);
-
-                $(".modal__header, .modal__body, .btn_confirmar")
-                    .css({ "border-color": modal.theme });
-                $(".modal__fechar, .btn_confirmar")
-                    .css({ "color": modal.theme });
-
-                modal.close == true ? $('.modal__fechar').css("display", "block") 
-                    : $('.modal__fechar').css("display", "none");
-                modal.action == true ?  $(".btn_confirmar").css("display", "block") 
-                    : $(".btn_confirmar").css("display", "none");
-            }
-        }
     </script>
 </body>
 </html>

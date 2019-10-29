@@ -1,0 +1,24 @@
+{
+  "name": "modal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrRosario/modalsCustomizado.git"
+  },
+  "author": "Eugenio Rosario",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrRosario/modalsCustomizado/issues"
+  },
+  "homepage": "https://github.com/MrRosario/modalsCustomizado#readme",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "serve-static": "^1.14.1"
+  }
+}
