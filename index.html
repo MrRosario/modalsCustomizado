@@ -7,16 +7,83 @@
     <title>Modal</title>
 
     <style>
-        @keyframes animatetop {
-            from { opacity:0 }
-            to { opacity: 1 }
+        .modal-container, .modalSuccessContainer, .modalWarningContainer{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            background-color: rgba(0,0,0,0.9);
+            left: 0;
+            top: 0;
         }
-        
+        .modal{
+            display: none;
+            border: 1px solid #000000;
+            width: 60%;
+            background-color: #ffffff;
+            margin: 0 auto;
+            z-index: 1;
+            margin-top: 140px;
+            animation-name: animatetop;
+            animation-duration: 0.6s;
+            animation-timing-function: ease-in-out;
+        }
+        .modal__header{
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid;
+            padding: 0px 10px;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+        .modal__close{
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none
+        }
+        .modal__body{
+            padding: 0px 10px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #d3d3d3
+        }
+        .modal__footer{
+            margin: 10px 0px;
+            display: flex;
+            justify-content: flex-end; 
+            padding: 0px 10px 
+        }
+        .btn_modal{
+            font-weight: bold;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #000000;
+            cursor: pointer
+        }
         .btn{
             border-color: #eee;
             padding: 10px;
             font-weight: bold;
         }
+        .modalSuccess, .modalWarning {
+            z-index: 1;
+            display: block;
+            text-align: center;
+            background: #ffffff;
+            width: 50%;
+            padding: 20px 0px;
+        }
+        .modalSuccess__img, .modalWarning__img{
+            width: 50px;
+            height: 50px;
+        }
+        .btnSuccess, .btnWarning{
+            padding: 10px 30px;
+        }
+        .btnSuccess:hover, .btnWarning:hover{ background-color: #eee; }
     </style>
 </head>
 <body>  
@@ -30,15 +97,25 @@
     <script src="./script.js"> </script>
 
     <script>
-        
-        CobzModal.regular(
-            header = "titulo modal global", 
+        CobzModal.default(
+            header = "Titulo modal padrao..........", 
             close = true, 
             action = true, 
-            theme = "#f00", 
+            theme = "purple", 
             content = "Conteudo do meu modal global, esta aqui...................."
         );
-
+        CobzModal.success(
+            header = "Bom Trabalho!", 
+            action = true, 
+            theme = "green", 
+            content = "Você concluiu com sucesso."
+        );
+        CobzModal.warning(
+            header = "Aviso!", 
+            action = true, 
+            theme = "red", 
+            content = "Algo deu errado."
+        );
     </script>
 </body>
 </html>

@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    CobzModal.style();
+
 });
 
 let CobzModal = {
-
-    regular: function(header, close, action, theme, content){ 
+    
+    default: function(header, close, action, theme, content){ 
         let modal = {
             init: function(){
                 this.render();
@@ -38,6 +38,7 @@ let CobzModal = {
                 $('.Cobz-ModalRegular').click(function(e){
                     e.preventDefault();
                     $('.modal-container').css("display", "block");
+                    $('.modal').css("display", "block");
                 });
                 $(".modal__close").click(function(e){
                     e.preventDefault();
@@ -49,98 +50,141 @@ let CobzModal = {
                     }
                 });
             },
-            params: { 
-                "header": header || "Meu titulo", 
-                "content": content || "Meu conteudo...", 
-                "close": close || true, 
-                "action": action || true, 
-                "theme": theme || '#000000'
-            },
             characteristics: function(){
-                let _self = this;
 
-                $('.modal__titulo').html(_self.params.header);
-                $('.conteudo_body').html(_self.params.content);
+                $('.modal__titulo').html(header);
+                $('.conteudo_body').html(content);
 
-                $(".modal__header, .modal__body, .btn_confirmar")
+                $(".modal__header, .modal, .modal__body, .btn_confirmar")
                     .css({ "border-color": theme });
-                $(".modal__fechar, .btn_confirmar")
+                $(".modal__close, .btn_confirmar")
                     .css({ "color": theme });
 
-                _self.params.close == true ? $('.modal__close').css("display", "block") 
+                close == true ? $('.modal__close').css("display", "block") 
                     : $('.modal__close').css("display", "none");
-                _self.params.action == true ?  $(".btn_confirmar").css("display", "block") 
+                action == true ?  $(".btn_confirmar").css("display", "block") 
                     : $(".btn_confirmar").css("display", "none");
             }
         }
         modal.init();
     },
-    style: function(){
-        const modalContainer = {
-            "display": "none",
-            "justify-content": "center",
-            "align-items": "center",
-            "height": "100%",
-            "width": "100%",
-            "position": "fixed",
-            "z-index": "1",
-            "background-color": "rgba(0,0,0,0.9)",
-            "left": "0",
-            "top": "0",
-        }
-        const modal = {
-            "border": "1px solid #000000",
-            "width": "60%",
-            "background-color": "#ffffff",
-            "margin": "0 auto",
-            "z-index": "100%",
-            "margin-top": "140px",
-            "animation-name": "animatetop",
-            "animation-duration": "0.6s",
-            "animation-timing-function": "ease-in-out",
-        }
-        const modalHeader = {
-            "display": "flex",
-            "justify-content": "space-between",
-            "border-bottom": "1px solid #d3d3d3",
-            "padding": "0px 10px",
-            "box-sizing": "border-box",
-        };
-        const modalClose = {
-            color: "#000000",
-            "font-size": "30px",
-            "font-weight": "bold",
-            "cursor": "pointer",
-            "text-decoration": "none"
-        }
-        const modalBody = {
-            "padding": "0px 10px",
-            "box-sizing": "border-box",
-            "border-bottom": "1px solid #d3d3d3"
-        }
-        const modalFooter = { 
-            "margin": "10px 0px",
-            "display": "flex",
-            "justify-content": "flex-end", 
-            "padding": "0px 10px" 
-        }
-        const btnModal = { 
-            "font-weight": "bold",
-            "padding": "10px",
-            "background-color": "#fff",
-            "border": "1px solid #000000",
-            "cursor": "pointer"
-        }
-        // const modal__close:hover,
-        // const modal__close:focus{ cursor: pointer; text-decoration: none;}
-        $('.modal-container').css(modalContainer);
-        $('.modal').css(modal);
-        $('.modal__header').css(modalHeader);
-        $('.modal__close').css(modalClose);
-        $('.modal__body').css(modalBody);
-        $('.modal__footer').css(modalFooter);
-        $('.btn_modal').css(btnModal);
-        
-    }
+    success: function(header, action, theme, content) {
+        let modal = {
+            init: function(){
+                this.render();
+            },
+            render: function(){
+                let _self = this;
+                
+                let _html = `
+                    <div class='modalSuccessContainer'>
+                        <div class='modalSuccess'>
+                            <div class="modalSuccess__header"> 
+                                <div> <img class="modalSuccess__img" src="./img/success.jpg"> </div>
+                                <h1 class="modalSuccess__titulo" style="text-align:center">  </h1> 
+                            </div>
+                            <div class="modalSuccess__body">
+                                <h3 class="modalSuccess_body"> </h3>
+                            </div>
+                            <div class="modalSuccess__footer">
+                                <button class="btn_modal btnSuccess">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
 
+                $('body').append(_html);
+
+                _self.characteristics();
+                _self.actions();
+            },
+            actions: function(){
+                $('.Cobz-ModalSucess').click(function(e){
+                    e.preventDefault();
+                    $('.modalSuccessContainer').css("display", "flex");
+                    $(".modalSuccess").css("display", "block");
+                });
+                $(".btnSuccess").click(function(e){
+                    $('.modalSuccessContainer').css("display", "none");
+                });
+                $(".modalSuccessContainer").click(function (e) {
+                    if(e.target.className == "modalSuccessContainer"){
+                        $('.modalSuccessContainer').css("display", "none");
+                    }
+                });
+            },
+            characteristics: function(){
+                $('.modalSuccess__titulo').html(header);
+                $('.modalSuccess_body').html(content);
+
+                $(".modalSuccess__header, .modalSuccess, .btnSuccess")
+                    .css({ "border-color": theme });
+                $(".btnSuccess").css({ "color": theme });
+
+                action == true ?  $(".btnSuccess").css("display", "initial") 
+                     : $(".btnSuccess").css("display", "none");
+            }
+        }
+        modal.init();
+    },
+    warning: function(header, action, theme, content) {
+        let modal = {
+            init: function(){
+                this.render();
+            },
+            render: function(){
+                let _self = this;
+                
+                let _html = `
+                    <div class='modalWarningContainer'>
+                        <div class='modalWarning'>
+                            <div class="modalWarning__header"> 
+                                <div> <img class="modalWarning__img" src="./img/warning.png"> </div>
+                                <h1 class="modalWarning__titulo" style="text-align:center">  </h1> 
+                            </div>
+                            <div class="modalWarning__body">
+                                <h3 class="modalWarning_body"> </h3>
+                            </div>
+                            <div class="modalWarning__footer">
+                                <button class="btn_modal btnWarning">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                $('body').append(_html);
+
+                _self.characteristics();
+                _self.actions();
+            },
+            actions: function(){
+                $('.Cobz-ModalWarning').click(function(e){
+                    e.preventDefault();
+                    $('.modalWarningContainer').css("display", "flex");
+                    $(".modalWarning").css("display", "block");
+                });
+                $(".btnWarning").click(function(e){
+                    $('.modalWarningContainer').css("display", "none");
+                });
+                $(".modalWarningContainer").click(function (e) {
+                    if(e.target.className == "modalWarningContainer"){
+                        $('.modalWarningContainer').css("display", "none");
+                    }
+                });
+            },
+            characteristics: function(){
+                $('.modalWarning__titulo').html(header);
+                $('.modalWarning_body').html(content);
+
+                $(".modalWarning__header, .modalWarning, .btnWarning")
+                    .css({ "border-color": theme });
+                $(".btnWarning").css({ "color": theme });
+
+                action == true ?  $(".btnWarning").css("display", "initial") 
+                     : $(".btnWarning").css("display", "none");
+            }
+        }
+        modal.init();
+    },
+    
 }
