@@ -1,6 +1,3 @@
-$(document).ready(function() {
-
-});
 
 let CobzModal = {
     
@@ -44,6 +41,10 @@ let CobzModal = {
                     e.preventDefault();
                     $('.modal-container').css("display", "none");
                 });
+                $(".btn_confirmar").click(function(e){
+                    e.preventDefault();
+                    $('.modal-container').css("display", "none");
+                });
                 $(".modal-container").click(function (e) {
                     if(e.target.className == "modal-container"){
                         $('.modal-container').css("display", "none");
@@ -51,7 +52,6 @@ let CobzModal = {
                 });
             },
             characteristics: function(){
-
                 $('.modal__titulo').html(header);
                 $('.conteudo_body').html(content);
 
@@ -117,9 +117,9 @@ let CobzModal = {
                 $('.modalSuccess__titulo').html(header);
                 $('.modalSuccess_body').html(content);
 
-                $(".modalSuccess__header, .modalSuccess, .btnSuccess")
+                $(".btnSuccess")
                     .css({ "border-color": theme });
-                $(".btnSuccess").css({ "color": theme });
+                $(".btnSuccess, .modalSuccess__titulo").css({ "color": theme });
 
                 action == true ?  $(".btnSuccess").css("display", "initial") 
                      : $(".btnSuccess").css("display", "none");
@@ -176,15 +176,15 @@ let CobzModal = {
                 $('.modalWarning__titulo').html(header);
                 $('.modalWarning_body').html(content);
 
-                $(".modalWarning__header, .modalWarning, .btnWarning")
+                $(".btnWarning")
                     .css({ "border-color": theme });
-                $(".btnWarning").css({ "color": theme });
+                $(".btnWarning, .modalWarning__titulo").css({ "color": theme });
 
                 action == true ?  $(".btnWarning").css("display", "initial") 
                      : $(".btnWarning").css("display", "none");
             }
         }
         modal.init();
-    },
+    }
     
 }
