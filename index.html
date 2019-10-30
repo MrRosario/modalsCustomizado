@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Modal</title>
+    <title>Modais componetizados</title>
 
     <style>
         .modal-container, .modalSuccessContainer, .modalWarningContainer{
@@ -87,35 +87,35 @@
     </style>
 </head>
 <body>  
-    <h1>Modals</h1>
+    <h1>Modais componetizados</h1>
     
-    <button class="btn Cobz-ModalRegular" style="background: #ffffff"> Modal Padrão</button>
-    <button class="btn Cobz-ModalSucess"  style="background: #00ff00">  Modal Success</button>
-    <button class="btn Cobz-ModalWarning" style="background: #ffae42"> Modal Warning</button>
+    <button class="btn Cobz-ModalRegular" style="background: #ffffff"> Modal Padrão  </button>
+    <button class="btn Cobz-ModalSucess"  style="background: #00ff00"> Modal Success </button>
+    <button class="btn Cobz-ModalWarning" style="background: #ffae42"> Modal Warning </button>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./script.js"> </script>
 
     <script>
-        CobzModal.default(
-            header = "Titulo modal padrao!", 
-            close = true, 
-            action = true, 
-            theme = "purple", 
-            content = "Conteudo do meu modal padrao passa aqui"
-        );
-        CobzModal.success(
-            header = "Bom Trabalho!", 
-            action = true, 
-            theme = "green", 
-            content = "Você concluiu com sucesso."
-        );
-        CobzModal.warning(
-            header = "Aviso!", 
-            action = true, 
-            theme = "red", 
-            content = "Algo deu errado."
-        );
+        CobzModal.padrao({
+            header: "Titulo modal padrao!", 
+            close: true, 
+            action: true, 
+            theme: "#5bc0de", 
+            content: "Conteudo do meu modal padrao passa aqui"
+        });
+        CobzModal.success({
+            header: "Bom Trabalho!", 
+            action: true, 
+            theme: "#22bb33", 
+            content: "Você concluiu com sucesso."
+        });
+        CobzModal.warning({
+            header: "Aviso!", 
+            action: true, 
+            theme: "#ffae42", 
+            content: "Algo deu errado."
+        });
     </script>
 </body>
 </html>

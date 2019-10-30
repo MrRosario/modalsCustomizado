@@ -1,7 +1,6 @@
 
 let CobzModal = {
-    
-    default: function(header, close, action, theme, content){ 
+    padrao: function({ header = "", close = true, action = true, theme = "#000000", content }){ 
         let modal = {
             init: function(){
                 this.render();
@@ -68,7 +67,7 @@ let CobzModal = {
         }
         modal.init();
     },
-    success: function(header, action, theme, content) {
+    success: function({ header, action = true, theme = "#00ff00", content }) {
         let modal = {
             init: function(){
                 this.render();
@@ -127,7 +126,7 @@ let CobzModal = {
         }
         modal.init();
     },
-    warning: function(header, action, theme, content) {
+    warning: function({header = "", action =  true, theme = "#ff0000", content}) {
         let modal = {
             init: function(){
                 this.render();
@@ -186,5 +185,4 @@ let CobzModal = {
         }
         modal.init();
     }
-    
 }
