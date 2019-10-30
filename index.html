@@ -7,114 +7,229 @@
     <title>Modals componetizados</title>
 
     <style>
-        .modal-container, .modalSuccessContainer, .modalWarningContainer{
+        .c-btn{
+            border-color: #eee;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .c-modalContainer{
+            background: rgba(0,0,0,.5);
             display: none;
             justify-content: center;
             align-items: center;
             height: 100%;
             width: 100%;
             position: fixed;
-            z-index: 1;
-            background-color: rgba(0,0,0,0.9);
             left: 0;
             top: 0;
         }
-        .modal{
-            display: none;
-            border: 1px solid #000000;
-            width: 60%;
+        .c-modal__header{
+            margin-top: 10px;    
+        }
+        .c-modal{ 
             background-color: #ffffff;
-            margin: 0 auto;
-            z-index: 1;
-            margin-top: 140px;
-            animation-name: animatetop;
-            animation-duration: 0.6s;
-            animation-timing-function: ease-in-out;
+            width: 32em;
+            max-width: 100%;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            font-family: cursive;
         }
-        .modal__header{
+        .c-modal-success{
+            background-color: #ffffff;
+            color: #00ff00;
+        }
+        .c-modal-error{
             display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid;
-            padding: 0px 10px;
-            box-sizing: border-box;
-            background-color: #f5f5f5;
+            justify-content: center;
         }
-        .modal__close{
-            font-size: 30px;
+        .c-modal-warning{
+            background-color: #ffffff;
+            color: #ffae42;
+        }
+        .c-modal-danger{
+            background-color: #ffffff;
+            color: #bb2124;
+        }
+        .c-modal__close{
+            display: flex;
+            justify-content: flex-end;
+            margin: 0px 10px;
+            color: #ccc;
+            font-family: serif;
+            font-size: 2.5em;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .c-modal__close:hover{
+            color: #141313;
+        }
+        .c-modal-success{
+            display: inline-block;
+            width: 8em;
+            height: 8em;
+            font-size: 12px;
+            border-radius: 50%;
+            border: 4px solid #22bb33;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            transform-origin: center;
+            animation: showSuccess 500ms ease-in-out;
+            transform: scale(1);
+        }
+        .success-icon__tip,
+        .success-icon__long{
+            display: block;
+            position: absolute;
+            height: 4px;
+            background-color: #22bb33;
+            border-radius: 10px;
+        }
+        .success-icon__tip{
+            width: 2.4em;
+            top: 4.3em;
+            left: 1.4em;
+            transform: rotate(45deg);
+            animation: tipInPlace 300ms ease-in-out;
+            animation-fill-mode: forwards;
+            animation-delay: 180ms;
+            visibility: hidden;
+        }
+        .success-icon__long{
+            width: 4em;
+            transform: rotate(-45deg);
+            top: 3.70em;
+            left: 2.75em;
+            animation: longInPlace 140ms ease-in-out;
+            animation-fill-mode: forwards;
+            visibility: hidden;
+            animation-delay: 300ms + 140ms;
+        }
+        @keyframes showSuccess {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes tipInPlace {
+            from {
+                width: 0em;
+                top: 0em;
+                left: -1.6em;
+            }
+            to {
+                width: 2.4em;
+                top: 4.3em;
+                left: 1.4em;
+                visibility: visible;
+            }
+        }
+
+        @keyframes longInPlace {
+            from {
+                width: 0em;
+                top: 5.1em;
+                left: 3.2em;
+            }
+            to {
+                width: 4em;
+                top: 3.70em;
+                left: 2.75em;
+                visibility: visible;
+            }
+        }
+        .c-modal__footer{
+            padding-bottom: 10px;
+        }
+        .c-modal__btn{
+            border-radius: 3px;
+            padding: 10px 40px;
             font-weight: bold;
             cursor: pointer;
-            text-decoration: none
+            border: 0;
+            color: #ffffff;
+            background: #333333;
         }
-        .modal__body{
-            padding: 0px 10px;
-            box-sizing: border-box;
-            border-bottom: 1px solid #d3d3d3
+        .c-warn,
+        .c-warn::before,
+        .c-warn::after{
+            position: relative;
+            padding: 0;
+            margin: 0;
         }
-        .modal__footer{
-            margin: 10px 0px;
-            display: flex;
-            justify-content: flex-end; 
-            padding: 0px 10px 
+        .c-warn {
+            color: transparent;
+            font-size: 70px;
         }
-        .btn_modal{
-            font-weight: bold;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #000000;
-            cursor: pointer
+        .c-warn.c-warning {
+            display: inline-block;
+            top: 0.225em;
+            width: 1.15em;
+            height: 1.15em;
+            overflow: hidden;
+            border: none;
+            background-color: transparent;
+            border-radius: 0.625em;
         }
-        .btn{
-            border-color: #eee;
-            padding: 10px;
-            font-weight: bold;
-        }
-        .modalSuccess, .modalWarning {
-            z-index: 1;
+        .c-warn.c-warning::before {
+            content: "";
             display: block;
+            top: -0.08em;
+            left: 0.0em;
+            position: absolute;
+            border: transparent 0.6em solid;
+            border-bottom-color: #fd3;
+            border-bottom-width: 1em;
+            border-top-width: 0;
+            box-shadow: #999 0 1px 1px;
+        }
+        .c-warn.c-warning::after {
+            display: block;
+            position: absolute;
+            top: 0.3em;
+            left: 0;
+            width: 100%;
+            padding: 0 1px;
             text-align: center;
-            background: #ffffff;
-            width: 50%;
-            padding: 20px 0px;
+            font-family: "Garamond";
+            content: "!";
+            font-size: 0.65em;
+            font-weight: bold;
+            color: #333;
         }
-        .modalSuccess__img, .modalWarning__img{
-            width: 50px;
-            height: 50px;
+        .c-error-circle{
+            width: 100px;
+            height: 100px;
+            background-color: #bb2124;
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            font-size: 72px;
+            font-family: calibri;
+            line-height: 100px;
         }
-        .btnSuccess, .btnWarning{
-            padding: 10px 30px;
-        }
-        .btnSuccess:hover, .btnWarning:hover{ background-color: #eee; }
     </style>
 </head>
 <body>  
     <h1>Modals componetizados</h1>
-    
-    <button class="btn Cobz-ModalRegular" style="background: #ffffff"> Modal Padrão  </button>
-    <button class="btn Cobz-ModalSucess"  style="background: #00ff00"> Modal Success </button>
-    <button class="btn Cobz-ModalWarning" style="background: #ffae42"> Modal Warning </button>
+
+    <button class="c-btn" id="c-btn" style="background: #0275d8"> Abrir Modal </button>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="./script.js"> </script>
 
     <script>
-        CobzModal.padrao({
-            header: "Titulo modal padrao!", 
-            close: true, 
-            action: true, 
-            theme: "#5bc0de", 
-            content: "Conteudo do meu modal padrao passa aqui"
-        });
-        CobzModal.success({
-            header: "Bom Trabalho!", 
-            action: true, 
-            theme: "#22bb33", 
-            content: "Você concluiu com sucesso."
-        });
-        CobzModal.warning({
-            header: "Aviso!", 
-            action: true, 
-            theme: "#ffae42", 
-            content: "Algo deu errado."
+        
+        Cbz.modal({
+            theme: "success",
+            title: "Concluido com sucesso!",
+            body: "As imagens foram carregadas com sucesso agora é só, ser feliz!",
+            action: true,
+            close: true
         });
     </script>
 </body>
